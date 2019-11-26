@@ -2,6 +2,9 @@ const withSass = require('@zeit/next-sass');
 const path = require('path');
 const withCSS = require('@zeit/next-css');
 const webpack = require('webpack');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig = {
   serverRuntimeConfig: {
@@ -20,4 +23,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withCSS(withSass(nextConfig));
+module.exports = withBundleAnalyzer(withCSS(withSass(nextConfig)));
