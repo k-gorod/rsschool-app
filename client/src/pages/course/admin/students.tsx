@@ -71,7 +71,7 @@ function Page(props: Props) {
     setLoading(false);
   }, [courseId]);
 
-  const handleExpel = record => setExpelledStudent(record);
+  const handleExpel = (record: StudentDetails) => setExpelledStudent(record);
 
   const handleCreateRepo = async ({ githubId }: StudentDetails) => {
     try {
@@ -121,7 +121,7 @@ function Page(props: Props) {
     setLoading(false);
   };
 
-  const renderModal = modalData => {
+  const renderModal = (modalData: any) => {
     return (
       <ModalForm
         getInitialValues={getInitialValues}
@@ -258,7 +258,7 @@ function getColumns(handleCreateRepo: any, handleExpel: any) {
       title: 'Repository',
       dataIndex: 'repository',
       width: 80,
-      render: value => (value ? <a href={value}>Link</a> : null),
+      render: (value: string) => (value ? <a href={value}>Link</a> : null),
     },
     {
       title: 'Total',
@@ -266,12 +266,12 @@ function getColumns(handleCreateRepo: any, handleExpel: any) {
       key: 'totalScore',
       width: 80,
       sorter: numberSorter('totalScore'),
-      render: value => <Text strong>{value}</Text>,
+      render: (value: number) => <Text strong>{value}</Text>,
     },
     {
       title: 'Actions',
       dataIndex: 'actions',
-      render: (_, record: StudentDetails) => (
+      render: (_: any, record: StudentDetails) => (
         <>
           {!record.repository && record.isActive && (
             <Button style={{ marginRight: '8px' }} type="dashed" onClick={() => handleCreateRepo(record)}>
@@ -289,7 +289,7 @@ function getColumns(handleCreateRepo: any, handleExpel: any) {
   ];
 }
 
-function getInitialValues(modalData) {
+function getInitialValues(modalData: any) {
   return modalData;
 }
 

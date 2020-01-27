@@ -27,7 +27,7 @@ export class StudentSearch extends React.Component<Props, State> {
     this.courseService = new CourseService(props.courseId);
   }
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps: Props) => {
     if (prevProps.defaultValues !== this.props.defaultValues) {
       this.setState({ data: this.props.defaultValues || [] });
     }

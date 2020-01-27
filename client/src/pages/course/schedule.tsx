@@ -73,7 +73,7 @@ class SchedulePage extends React.Component<Props, State> {
   readonly eventTypeToName = EventTypeToName;
   private courseService: CourseService;
 
-  private createCourseEventFromTask(task, type): CourseEvent {
+  private createCourseEventFromTask(task: CourseTask, type: string): CourseEvent {
     return {
       id: task.id,
       dateTime: task.studentStartDate || '',
@@ -93,11 +93,11 @@ class SchedulePage extends React.Component<Props, State> {
     this.courseService = new CourseService(props.course.id);
   }
 
-  handleTimeZoneChange = timeZone => {
+  handleTimeZoneChange = (timeZone: string) => {
     this.setState({ timeZone });
   };
 
-  timeZoneRenderer = value => {
+  timeZoneRenderer = (value: string) => {
     return value
       ? moment(value, 'YYYY-MM-DD HH:mmZ')
           .tz(this.state.timeZone)
@@ -184,7 +184,9 @@ class SchedulePage extends React.Component<Props, State> {
               width: 100,
               dataIndex: ['event', 'type'],
               render: (value: keyof typeof EventTypeColor) => (
-                <Tag color={EventTypeColor[value]}>{this.eventTypeToName[value] || value}</Tag>
+                <Tag color={EventTypeColor[value]}>
+                  {(this.eventTypeToName as Record<string, string>)[value] || value}
+                </Tag>
               ),
             },
             {

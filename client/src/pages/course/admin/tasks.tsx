@@ -67,7 +67,7 @@ function Page(props: Props) {
 
   const handleModalSubmit = async (values: any) => {
     const record = createRecord(values);
-    let courseTask;
+    let courseTask: CourseTask & { taskOwnerId?: number };
     let updatedData;
 
     if (modalAction === 'update') {
@@ -202,7 +202,10 @@ function Page(props: Props) {
   );
 }
 
-function getColumns(actions: { handleEditItem: any; handleDeleteItem: any; handleDistribute: any }, { tasks, stages }) {
+function getColumns(
+  actions: { handleEditItem: any; handleDeleteItem: any; handleDistribute: any },
+  { tasks, stages }: { tasks: any[]; stages: any[] },
+) {
   return [
     { title: 'Id', dataIndex: 'id' },
     {
@@ -225,7 +228,7 @@ function getColumns(actions: { handleEditItem: any; handleDeleteItem: any; handl
     {
       title: 'Actions',
       dataIndex: 'actions',
-      render: (_, record: CourseTask) => (
+      render: (_: any, record: CourseTask) => (
         <>
           <span>
             <a onClick={() => actions.handleEditItem(record)}>Edit</a>{' '}

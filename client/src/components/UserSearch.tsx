@@ -30,7 +30,7 @@ export class UserSearch extends React.Component<Props, State> {
     }
   };
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps: Props) => {
     if (prevProps.defaultValues !== this.props.defaultValues) {
       this.setState({ data: this.props.defaultValues || [] });
     }

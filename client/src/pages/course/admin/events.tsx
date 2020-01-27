@@ -17,7 +17,7 @@ import { DEFAULT_TIMEZONE, TIMEZONES } from '../../../configs/timezones';
 
 type Props = CoursePageProps;
 
-const timeZoneRenderer = timeZone => value => {
+const timeZoneRenderer = (timeZone: string) => (value: string) => {
   return value
     ? moment(value, 'YYYY-MM-DD HH:mmZ')
         .tz(timeZone)
@@ -193,7 +193,7 @@ function Page(props: Props) {
 
 export default withCourseData(withSession(Page));
 
-function getColumns(handleEditItem: any, handleDeleteItem: any, { timeZone, events, stages }) {
+function getColumns(handleEditItem: any, handleDeleteItem: any, { timeZone, events, stages }: any) {
   return [
     { title: 'Id', dataIndex: 'id' },
     {
@@ -221,7 +221,7 @@ function getColumns(handleEditItem: any, handleDeleteItem: any, { timeZone, even
       title: 'Actions',
       dataIndex: 'actions',
       width: 110,
-      render: (_, record: CourseEvent) => (
+      render: (_: any, record: CourseEvent) => (
         <>
           <span>
             <a onClick={() => handleEditItem(record)}>Edit</a>{' '}
@@ -240,7 +240,7 @@ function getColumns(handleEditItem: any, handleDeleteItem: any, { timeZone, even
   ];
 }
 
-function createRecord(values: any, courseId) {
+function createRecord(values: any, courseId: number) {
   const data = {
     courseId,
     place: values.place,
