@@ -151,7 +151,7 @@ const routes = [
   {
     name: () => (
       <>
-        <CompassTwoTone twoToneColor="#52c41a" /> Cross Mentors <Tag color="magenta">new!</Tag>
+        <CompassTwoTone twoToneColor="#52c41a" /> Cross Mentors
       </>
     ),
     getLink: (course: Course) => `/course/student/cross-mentors?course=${course.alias}`,
